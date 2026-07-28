@@ -1,0 +1,54 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "agentwire",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-28",
+  "compatibility_flags": ["nodejs_compat"],
+  "account_id": "YOUR_CLOUDFLARE_ACCOUNT_ID",
+
+  "routes": [
+    { "pattern": "agentwire.example.com", "custom_domain": true }
+  ],
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "agentwire",
+      "database_id": "YOUR_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "YOUR_KV_NAMESPACE_ID"
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "ATTACH",
+      "bucket_name": "agentwire-attachments"
+    }
+  ],
+
+  "queues": {
+    "producers": [
+      { "binding": "NQ", "queue": "agentwire-notifications" }
+    ],
+    "consumers": [
+      {
+        "queue": "agentwire-notifications",
+        "max_retries": 3,
+        "max_batch_size": 10,
+        "max_batch_timeout": 30
+      }
+    ]
+  },
+
+  "vars": {
+    "ENVIRONMENT": "production",
+    "DEFAULT_PLAN": "free"
+  }
+}

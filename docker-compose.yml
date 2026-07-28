@@ -1,0 +1,18 @@
+# Isolated OpenClaw instance — the ONLY service to be exposed (via FRP later).
+# Port is bound to 127.0.0.1 on the host, so nothing is public until FRP is wired.
+services:
+  openclaw:
+    build: .
+    image: openclaw-aas:local
+    container_name: openclaw-aas
+    restart: unless-stopped
+    init: true
+    shm_size: 2g
+    environment:
+      - API_KEY=${API_KEY:-}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+    volumes:
+      - ./data/.openclaw:/root/.openclaw
+    ports:
+      - "127.0.0.1:18790:18789"
+      - "127.0.0.1:18080:8080"

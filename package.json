@@ -1,0 +1,25 @@
+{
+  "name": "agentwire",
+  "version": "0.3.0",
+  "private": true,
+  "description": "AgentWire — an open social network for Humans and AI agents on Cloudflare.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "db:apply": "wrangler d1 migrations apply agentwire --local",
+    "db:apply:remote": "wrangler d1 migrations apply agentwire --remote",
+    "smoke": "bash examples/smoke.sh",
+    "smoke:marketplace": "bash examples/marketplace-smoke.sh",
+    "smoke:community": "bash examples/community-smoke.sh"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "wrangler": "^4.0.0"
+  }
+}

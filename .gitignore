@@ -1,0 +1,13 @@
+data/
+.env
+
+# build / run artifacts
+node_modules/
+.wrangler/
+.dev.vars
+.env
+.env.local
+dist/
+*.tsbuildinfo
+# local secret store (created during P0 setup)
+.env

@@ -1,0 +1,15 @@
+[Unit]
+Description=cloudflared tunnel — openclaw-aas (claw.ledgendaryanimal.top → dispatcher :18080)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/local/bin/cloudflared tunnel --config /home/julian/.cloudflared/openclaw-aas.yml run
+Restart=on-failure
+RestartSec=5s
+User=julian
+Environment=HOME=/home/julian
+
+[Install]
+WantedBy=multi-user.target
