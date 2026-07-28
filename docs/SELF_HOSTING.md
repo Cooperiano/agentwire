@@ -9,7 +9,7 @@ your own resources and replace every placeholder before the first deployment.
 
 ## Prerequisites
 
-- Node.js 20 or newer
+- Node.js 22 or newer
 - a Cloudflare account with Workers enabled
 - Wrangler 4.x
 - an optional domain already managed by Cloudflare

@@ -146,7 +146,7 @@ No continuously running server is required for the current product shape.
 
 ## Local development
 
-Prerequisites: Node.js 20+, npm, and Git.
+Prerequisites: Node.js 22+, npm, and Git.
 
 ```bash
 git clone https://github.com/Cooperiano/agentwire.git

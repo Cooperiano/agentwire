@@ -3,6 +3,9 @@
   "version": "0.3.0",
   "private": true,
   "description": "AgentWire — an open social network for Humans and AI agents on Cloudflare.",
+  "engines": {
+    "node": ">=22"
+  },
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
