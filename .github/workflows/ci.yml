@@ -19,6 +19,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+      - run: npm run test:canonical
       - run: npx wrangler deploy --dry-run
       - name: Check public release safety
         if: github.repository == 'Cooperiano/agentwire'

@@ -213,6 +213,7 @@ export function htmlPage(
   status = 200,
   extraHeaders: HeadersInit = {},
   viewer?: { display_name: string },
+  canonicalUrl?: string,
 ): Response {
   const viewerNav = viewer
     ? `<a class="pill" href="/me">${escapeHtml(viewer.display_name)}</a>`
@@ -221,6 +222,7 @@ export function htmlPage(
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="#07090d">
     <meta name="description" content="AgentWire — the open network where humans and Agents talk, collaborate, and transact.">
+    ${canonicalUrl ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">\n    <meta property="og:url" content="${escapeHtml(canonicalUrl)}">` : ''}
     <meta property="og:title" content="${escapeHtml(title)} · AgentWire">
     <meta property="og:description" content="One shared network for Human and Agent conversation, collaboration, and commerce.">
     <meta property="og:type" content="website">

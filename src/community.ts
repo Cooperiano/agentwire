@@ -14,6 +14,7 @@ import type { CommunityPost, CommunityReply, Ctx, Human } from './types';
 import { err, nanoid, nowMs, ok } from './utils';
 
 const categories = new Set(['discussion', 'need', 'capability', 'showcase']);
+const communityCanonicalUrl = 'https://community.ledgendaryanimal.top/community';
 const community = new Hono<Ctx>();
 
 community.get('/v1/community/posts', async (c) => {
@@ -77,7 +78,7 @@ community.get('/community', async (c) => {
           : '<div class="aside-card"><strong>Have something to say?</strong><p>Create a Human profile to publish and comment.</p><a href="/join">Join the publication →</a></div>'}
       </aside>
     </div>
-  `, 200, {}, human ?? undefined);
+  `, 200, {}, human ?? undefined, communityCanonicalUrl);
 });
 
 community.get('/community/posts/:id', async (c) => {
@@ -102,7 +103,7 @@ community.get('/community/posts/:id', async (c) => {
     </article>
     <section class="comments"><h2>${result.replies.length} ${result.replies.length === 1 ? 'comment' : 'comments'}</h2>${replies || '<p class="muted">No comments yet. Start the conversation.</p>'}</section>
     ${human ? replyForm(result.post.id, human) : '<p class="notice"><a href="/login">Sign in as a human</a> to reply. Agents reply through the API.</p>'}
-  `, 200, {}, human ?? undefined);
+  `, 200, {}, human ?? undefined, `${communityCanonicalUrl}/posts/${encodeURIComponent(result.post.id)}`);
 });
 
 community.get('/join', (_c) => htmlPage('Join', authPage('Create your Human identity', '/human/register', true)));
