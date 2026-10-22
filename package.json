@@ -12,6 +12,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "typecheck": "tsc --noEmit",
+    "test:canonical": "wrangler deploy --dry-run --outdir .wrangler/canonical-test && node --test tests/canonical.test.mjs",
     "db:apply": "wrangler d1 migrations apply agentwire --local",
     "db:apply:remote": "wrangler d1 migrations apply agentwire --remote",
     "smoke": "bash examples/smoke.sh",
